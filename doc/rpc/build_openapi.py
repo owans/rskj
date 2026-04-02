@@ -134,6 +134,38 @@ def main() -> None:
     def yaml_quote(s):
         return json.dumps(s, ensure_ascii=True)
 
+    # YAML 1.1 (used by Swagger Editor and others) treats bare keys like Null/true/false
+    # as language null/boolean, which breaks OpenAPI component names such as schema "Null".
+    YAML_AMBIGUOUS_MAP_KEYS = frozenset(
+        (
+            "null",
+            "Null",
+            "NULL",
+            "~",
+            "true",
+            "True",
+            "false",
+            "False",
+            "yes",
+            "Yes",
+            "no",
+            "No",
+            "on",
+            "On",
+            "off",
+            "Off",
+        )
+    )
+
+    def yaml_map_key(k: object) -> str:
+        ks = str(k)
+        if ks in YAML_AMBIGUOUS_MAP_KEYS:
+            return yaml_quote(ks)
+        # Quote numeric keys (e.g. HTTP 200) so YAML 1.1 keeps them as strings for OpenAPI validators.
+        if ks.isdigit():
+            return yaml_quote(ks)
+        return ks
+
     def to_yaml(obj, indent=0):
         sp = "  " * indent
         if obj is None:
@@ -159,7 +191,13 @@ def main() -> None:
                 return "{}"
             lines = []
             for k, v in obj.items():
-                key = str(k)
+                key = yaml_map_key(k)
+                if str(k) == "source" and isinstance(v, str) and "\n" in v:
+                    lines.append(f"{sp}{key}: |")
+                    body = sp + "  "
+                    for line in v.split("\n"):
+                        lines.append(f"{body}{line}")
+                    continue
                 if isinstance(v, (dict, list)):
                     if (isinstance(v, list) and not v) or (isinstance(v, dict) and not v):
                         lines.append(f"{sp}{key}: {to_yaml(v, indent + 1)}")
@@ -273,6 +311,9 @@ def main() -> None:
         }
         if params_items:
             req_schema["properties"]["params"]["items"] = params_items
+        else:
+            # OpenAPI / JSON Schema validators require `items` when type is array (even if maxItems is 0).
+            req_schema["properties"]["params"]["items"] = {}
 
         ex = (m.get("examples") or [{}])[0]
         req_params = []
@@ -328,6 +369,7 @@ def main() -> None:
 
         req_json = json.dumps(req_example, ensure_ascii=True)
 
+        body_json = json.dumps(req_example, ensure_ascii=True)
         x_samples = [
             {
                 "lang": "cURL",
@@ -342,12 +384,12 @@ def main() -> None:
                 "lang": "JavaScript",
                 "label": "JavaScript (fetch)",
                 "source": (
-                    f"const response = await fetch('{CODE_SAMPLE_BASE}', {{\\n"
-                    f"  method: 'POST',\\n"
-                    f"  headers: {{ 'Content-Type': 'application/json' }},\\n"
-                    f"  body: JSON.stringify({json.dumps(req_example, ensure_ascii=True)})\\n"
-                    f"}});\\n"
-                    f"const data = await response.json();\\n"
+                    f"const response = await fetch('{CODE_SAMPLE_BASE}', {{\n"
+                    f"  method: 'POST',\n"
+                    f"  headers: {{ 'Content-Type': 'application/json' }},\n"
+                    f"  body: JSON.stringify({body_json})\n"
+                    f"}});\n"
+                    f"const data = await response.json();\n"
                     f"console.log(data);"
                 ),
             },
@@ -355,9 +397,9 @@ def main() -> None:
                 "lang": "Python",
                 "label": "Python (requests)",
                 "source": (
-                    "import requests\\n\\n"
-                    f"payload = {json.dumps(req_example, ensure_ascii=True)}\\n"
-                    f"response = requests.post('{CODE_SAMPLE_BASE}', json=payload, timeout=30)\\n"
+                    "import requests\n\n"
+                    f"payload = {body_json}\n"
+                    f"response = requests.post('{CODE_SAMPLE_BASE}', json=payload, timeout=30)\n"
                     "print(response.json())"
                 ),
             },
@@ -381,7 +423,8 @@ def main() -> None:
                 },
             },
             "responses": {
-                200: {
+                # String keys: some OpenAPI validators reject numeric YAML keys for HTTP status codes.
+                "200": {
                     "description": STD_RESPONSE_DESC,
                     "content": {
                         "application/json": {

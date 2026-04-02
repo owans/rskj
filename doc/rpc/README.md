@@ -95,6 +95,12 @@ The generated OpenAPI includes both servers:
 Static code samples default to testnet:
 - `https://rpc.testnet.rootstock.io/YOUR_API_KEY`
 
+## Swagger Editor vs Docusaurus
+
+If you paste the spec into [Swagger Editor](https://editor.swagger.io/), **`x-code-samples` and `x-jsonrpc-params` are vendor extensions**. Standard Swagger UI shows them under **Extensions** as unstructured data; it does **not** render Redoc-style code tabs. That is expected.
+
+The Docusaurus OpenAPI plugin (and Redoc) can interpret `x-code-samples` and present samples in a much friendlier way. Use Swagger Editor mainly to validate structure and refs, not as the final docs UX.
+
 ## Troubleshooting
 
 - Missing or incorrect method output:
@@ -105,6 +111,8 @@ Static code samples default to testnet:
   - Prefer explicit examples in method JSON; generator fallbacks are heuristic.
 - YAML formatting concerns:
   - Regenerate with `python3 doc/rpc/build_openapi.py` (do not manually reformat generated YAML with generic dumpers).
+- `x-code-samples` looks like a blob in Swagger UI:
+  - Expected for vendor extensions; see **Swagger Editor vs Docusaurus** above. Regenerating also emits multiline `source: |` blocks for readability in YAML and slightly clearer extension previews.
 
 ## Ownership note
 

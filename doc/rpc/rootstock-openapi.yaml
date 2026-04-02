@@ -52,6 +52,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -63,7 +64,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -94,13 +95,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_blockNumber\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_blockNumber\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_blockNumber\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_blockNumber", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_call:
     post:
@@ -161,7 +177,7 @@ paths:
                 - "latest"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -189,13 +205,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_call\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}, \"latest\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_call", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}, "latest"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_call\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}, \"latest\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_call", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}, "latest"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_call\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}, \"latest\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_call", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}, "latest"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "transactionData"
           description: "The transaction data"
@@ -244,6 +275,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -255,7 +287,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -283,13 +315,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_chainId\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_chainId\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_chainId\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_chainId", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_coinbase:
     post:
@@ -323,6 +370,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -334,7 +382,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -362,13 +410,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_coinbase\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_coinbase", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_coinbase\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_coinbase", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_coinbase\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_coinbase", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_estimateGas:
     post:
@@ -422,7 +485,7 @@ paths:
                   data: "0x0000000000000000000000000000000000000000000000000000000000000000"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -450,13 +513,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_estimateGas\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_estimateGas", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_estimateGas\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_estimateGas", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_estimateGas\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_estimateGas", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "transactionData"
           description: "The transaction data"
@@ -495,6 +573,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -506,7 +585,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -536,13 +615,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_gasPrice\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_gasPrice", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_gasPrice\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_gasPrice", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_gasPrice\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_gasPrice", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_getBalance:
     post:
@@ -597,7 +691,7 @@ paths:
                 - "latest"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -628,13 +722,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getBalance\", \"params\": [\"0xc94770007dda54cF92009BFF0dE90c06F603a09f\", \"latest\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getBalance", "params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getBalance\", \"params\": [\"0xc94770007dda54cF92009BFF0dE90c06F603a09f\", \"latest\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getBalance", "params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getBalance\", \"params\": [\"0xc94770007dda54cF92009BFF0dE90c06F603a09f\", \"latest\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getBalance", "params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "address"
           description: "Address to check for balance"
@@ -700,7 +809,7 @@ paths:
                 - true
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -756,13 +865,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockByHash\", \"params\": [\"0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3\", true], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getBlockByHash", "params": ["0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3", true], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockByHash\", \"params\": [\"0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3\", true], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getBlockByHash", "params": ["0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3", true], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockByHash\", \"params\": [\"0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3\", true], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getBlockByHash", "params": ["0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3", true], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockHash"
           description: ""
@@ -828,7 +952,7 @@ paths:
                 - true
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -884,13 +1008,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockByNumber\", \"params\": [\"0x1b4\", true], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getBlockByNumber", "params": ["0x1b4", true], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockByNumber\", \"params\": [\"0x1b4\", true], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getBlockByNumber", "params": ["0x1b4", true], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockByNumber\", \"params\": [\"0x1b4\", true], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getBlockByNumber", "params": ["0x1b4", true], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockNumberOrTag"
           description: ""
@@ -953,7 +1092,7 @@ paths:
                 - "0xb125fbdfa4a07258e2653c4c7412d060362928aaf062b5f91321d5ceed66854a"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -981,13 +1120,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockTransactionCountByHash\", \"params\": [\"0xb125fbdfa4a07258e2653c4c7412d060362928aaf062b5f91321d5ceed66854a\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getBlockTransactionCountByHash", "params": ["0xb125fbdfa4a07258e2653c4c7412d060362928aaf062b5f91321d5ceed66854a"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockTransactionCountByHash\", \"params\": [\"0xb125fbdfa4a07258e2653c4c7412d060362928aaf062b5f91321d5ceed66854a\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getBlockTransactionCountByHash", "params": ["0xb125fbdfa4a07258e2653c4c7412d060362928aaf062b5f91321d5ceed66854a"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockTransactionCountByHash\", \"params\": [\"0xb125fbdfa4a07258e2653c4c7412d060362928aaf062b5f91321d5ceed66854a\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getBlockTransactionCountByHash", "params": ["0xb125fbdfa4a07258e2653c4c7412d060362928aaf062b5f91321d5ceed66854a"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockHash"
           description: ""
@@ -1044,7 +1198,7 @@ paths:
                 - "0x2e5e54"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1072,13 +1226,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockTransactionCountByNumber\", \"params\": [\"0x2e5e54\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getBlockTransactionCountByNumber", "params": ["0x2e5e54"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockTransactionCountByNumber\", \"params\": [\"0x2e5e54\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getBlockTransactionCountByNumber", "params": ["0x2e5e54"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getBlockTransactionCountByNumber\", \"params\": [\"0x2e5e54\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getBlockTransactionCountByNumber", "params": ["0x2e5e54"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockNumberOrTag"
           description: ""
@@ -1141,7 +1310,7 @@ paths:
                 - "0x2"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1169,13 +1338,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getCode\", \"params\": [\"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b\", \"0x2\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getCode", "params": ["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getCode\", \"params\": [\"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b\", \"0x2\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getCode", "params": ["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getCode\", \"params\": [\"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b\", \"0x2\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getCode", "params": ["0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b", "0x2"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "address"
           description: "The address of the contract"
@@ -1238,7 +1422,7 @@ paths:
                 - "0x16"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1279,13 +1463,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getFilterChanges\", \"params\": [\"0x16\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getFilterChanges", "params": ["0x16"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getFilterChanges\", \"params\": [\"0x16\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getFilterChanges", "params": ["0x16"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getFilterChanges\", \"params\": [\"0x16\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getFilterChanges", "params": ["0x16"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "filterId"
           description: ""
@@ -1339,7 +1538,7 @@ paths:
                 - "0x16"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1380,13 +1579,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getFilterLogs\", \"params\": [\"0x16\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getFilterLogs", "params": ["0x16"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getFilterLogs\", \"params\": [\"0x16\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getFilterLogs", "params": ["0x16"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getFilterLogs\", \"params\": [\"0x16\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getFilterLogs", "params": ["0x16"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "filterId"
           description: ""
@@ -1455,7 +1669,7 @@ paths:
                     - "0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1496,13 +1710,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [{\"topics\": [\"0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b\"]}], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getLogs", "params": [{"topics": ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [{\"topics\": [\"0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b\"]}], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getLogs", "params": [{"topics": ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getLogs\", \"params\": [{\"topics\": [\"0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b\"]}], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getLogs", "params": [{"topics": ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "filter"
           description: ""
@@ -1577,7 +1806,7 @@ paths:
                 - "latest"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1605,13 +1834,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getStorageAt\", \"params\": [\"0x295a70b2de5e3953354a6a8344e616ed314d7251\", \"0x6661e9d6d8b923d5bbaab1b96e1dd51ff6ea2a93520fdc9eb75d059238b8c5e9\", \"latest\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getStorageAt", "params": ["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x6661e9d6d8b923d5bbaab1b96e1dd51ff6ea2a93520fdc9eb75d059238b8c5e9", "latest"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getStorageAt\", \"params\": [\"0x295a70b2de5e3953354a6a8344e616ed314d7251\", \"0x6661e9d6d8b923d5bbaab1b96e1dd51ff6ea2a93520fdc9eb75d059238b8c5e9\", \"latest\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getStorageAt", "params": ["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x6661e9d6d8b923d5bbaab1b96e1dd51ff6ea2a93520fdc9eb75d059238b8c5e9", "latest"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getStorageAt\", \"params\": [\"0x295a70b2de5e3953354a6a8344e616ed314d7251\", \"0x6661e9d6d8b923d5bbaab1b96e1dd51ff6ea2a93520fdc9eb75d059238b8c5e9\", \"latest\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getStorageAt", "params": ["0x295a70b2de5e3953354a6a8344e616ed314d7251", "0x6661e9d6d8b923d5bbaab1b96e1dd51ff6ea2a93520fdc9eb75d059238b8c5e9", "latest"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "address"
           description: ""
@@ -1680,7 +1924,7 @@ paths:
                 - "0x0"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1712,13 +1956,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByBlockHashAndIndex\", \"params\": [\"0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69\", \"0x0\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getTransactionByBlockHashAndIndex", "params": ["0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69", "0x0"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByBlockHashAndIndex\", \"params\": [\"0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69\", \"0x0\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getTransactionByBlockHashAndIndex", "params": ["0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69", "0x0"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByBlockHashAndIndex\", \"params\": [\"0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69\", \"0x0\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getTransactionByBlockHashAndIndex", "params": ["0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69", "0x0"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockHash"
           description: ""
@@ -1782,7 +2041,7 @@ paths:
                 - "0x0"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1814,13 +2073,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByBlockNumberAndIndex\", \"params\": [\"0x29c\", \"0x0\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getTransactionByBlockNumberAndIndex", "params": ["0x29c", "0x0"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByBlockNumberAndIndex\", \"params\": [\"0x29c\", \"0x0\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getTransactionByBlockNumberAndIndex", "params": ["0x29c", "0x0"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByBlockNumberAndIndex\", \"params\": [\"0x29c\", \"0x0\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getTransactionByBlockNumberAndIndex", "params": ["0x29c", "0x0"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockNumberOrTag"
           description: ""
@@ -1882,7 +2156,7 @@ paths:
                 - "0x05140aca6b0312a2d7dce35a3227b86b8a973fc69e508c5d4beb2b3c88fa28a1"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -1914,13 +2188,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByHash\", \"params\": [\"0x05140aca6b0312a2d7dce35a3227b86b8a973fc69e508c5d4beb2b3c88fa28a1\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": ["0x05140aca6b0312a2d7dce35a3227b86b8a973fc69e508c5d4beb2b3c88fa28a1"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByHash\", \"params\": [\"0x05140aca6b0312a2d7dce35a3227b86b8a973fc69e508c5d4beb2b3c88fa28a1\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": ["0x05140aca6b0312a2d7dce35a3227b86b8a973fc69e508c5d4beb2b3c88fa28a1"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionByHash\", \"params\": [\"0x05140aca6b0312a2d7dce35a3227b86b8a973fc69e508c5d4beb2b3c88fa28a1\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getTransactionByHash", "params": ["0x05140aca6b0312a2d7dce35a3227b86b8a973fc69e508c5d4beb2b3c88fa28a1"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "transactionHash"
           description: ""
@@ -1980,7 +2269,7 @@ paths:
                 - "latest"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2011,13 +2300,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionCount\", \"params\": [\"0xc94770007dda54cF92009BFF0dE90c06F603a09f\", \"latest\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getTransactionCount", "params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionCount\", \"params\": [\"0xc94770007dda54cF92009BFF0dE90c06F603a09f\", \"latest\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getTransactionCount", "params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionCount\", \"params\": [\"0xc94770007dda54cF92009BFF0dE90c06F603a09f\", \"latest\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getTransactionCount", "params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "address"
           description: ""
@@ -2080,7 +2384,7 @@ paths:
                 - "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2132,13 +2436,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionReceipt\", \"params\": [\"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getTransactionReceipt", "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionReceipt\", \"params\": [\"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getTransactionReceipt", "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getTransactionReceipt\", \"params\": [\"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getTransactionReceipt", "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "transactionHash"
           description: ""
@@ -2194,7 +2513,7 @@ paths:
                 - "0x0"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2250,13 +2569,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleByBlockHashAndIndex\", \"params\": [\"0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69\", \"0x0\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getUncleByBlockHashAndIndex", "params": ["0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69", "0x0"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleByBlockHashAndIndex\", \"params\": [\"0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69\", \"0x0\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getUncleByBlockHashAndIndex", "params": ["0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69", "0x0"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleByBlockHashAndIndex\", \"params\": [\"0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69\", \"0x0\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getUncleByBlockHashAndIndex", "params": ["0x0297ed9012b044e671a86a8e88bc7cfc79311a1da38b807783ac87b9b89b1b69", "0x0"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockHash"
           description: ""
@@ -2317,7 +2651,7 @@ paths:
                 - "0x0"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2373,13 +2707,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleByBlockNumberAndIndex\", \"params\": [\"0x29c\", \"0x0\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getUncleByBlockNumberAndIndex", "params": ["0x29c", "0x0"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleByBlockNumberAndIndex\", \"params\": [\"0x29c\", \"0x0\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getUncleByBlockNumberAndIndex", "params": ["0x29c", "0x0"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleByBlockNumberAndIndex\", \"params\": [\"0x29c\", \"0x0\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getUncleByBlockNumberAndIndex", "params": ["0x29c", "0x0"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "uncleBlockNumber"
           description: "The block in which the uncle was included"
@@ -2438,7 +2787,7 @@ paths:
                 - "0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2466,13 +2815,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleCountByBlockHash\", \"params\": [\"0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getUncleCountByBlockHash", "params": ["0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleCountByBlockHash\", \"params\": [\"0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getUncleCountByBlockHash", "params": ["0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleCountByBlockHash\", \"params\": [\"0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getUncleCountByBlockHash", "params": ["0xf1652d8322a880e520f996f7d28b645814a58a202d7d2ab7f058e5566fe4f9f3"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockHash"
           description: ""
@@ -2529,7 +2893,7 @@ paths:
                 - "0x1b4"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2557,13 +2921,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleCountByBlockNumber\", \"params\": [\"0x1b4\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_getUncleCountByBlockNumber", "params": ["0x1b4"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleCountByBlockNumber\", \"params\": [\"0x1b4\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_getUncleCountByBlockNumber", "params": ["0x1b4"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_getUncleCountByBlockNumber\", \"params\": [\"0x1b4\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_getUncleCountByBlockNumber", "params": ["0x1b4"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "blockNumberOrTag"
           description: ""
@@ -2605,6 +2984,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -2616,7 +2996,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2644,13 +3024,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_hashrate\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_hashrate", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_hashrate\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_hashrate", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_hashrate\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_hashrate", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_mining:
     post:
@@ -2684,6 +3079,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -2695,7 +3091,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2723,13 +3119,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_mining\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_mining", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_mining\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_mining", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_mining\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_mining", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_newBlockFilter:
     post:
@@ -2763,6 +3174,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -2774,7 +3186,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2802,13 +3214,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_newBlockFilter\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_newBlockFilter", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_newBlockFilter\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_newBlockFilter", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_newBlockFilter\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_newBlockFilter", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_newFilter:
     post:
@@ -2875,7 +3302,7 @@ paths:
                     - "0x0000000000000000000000000000000000000000000000000000000012341234"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -2903,13 +3330,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_newFilter\", \"params\": [{\"fromBlock\": \"0x1\", \"toBlock\": \"0x2\", \"address\": \"0x8888f1f195afa192cfee860698584c030f4c9db1\", \"topics\": [\"0x0000000000000000000000000000000000000000000000000000000012341234\"]}], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_newFilter", "params": [{"fromBlock": "0x1", "toBlock": "0x2", "address": "0x8888f1f195afa192cfee860698584c030f4c9db1", "topics": ["0x0000000000000000000000000000000000000000000000000000000012341234"]}], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_newFilter\", \"params\": [{\"fromBlock\": \"0x1\", \"toBlock\": \"0x2\", \"address\": \"0x8888f1f195afa192cfee860698584c030f4c9db1\", \"topics\": [\"0x0000000000000000000000000000000000000000000000000000000012341234\"]}], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_newFilter", "params": [{"fromBlock": "0x1", "toBlock": "0x2", "address": "0x8888f1f195afa192cfee860698584c030f4c9db1", "topics": ["0x0000000000000000000000000000000000000000000000000000000012341234"]}], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_newFilter\", \"params\": [{\"fromBlock\": \"0x1\", \"toBlock\": \"0x2\", \"address\": \"0x8888f1f195afa192cfee860698584c030f4c9db1\", \"topics\": [\"0x0000000000000000000000000000000000000000000000000000000012341234\"]}], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_newFilter", "params": [{"fromBlock": "0x1", "toBlock": "0x2", "address": "0x8888f1f195afa192cfee860698584c030f4c9db1", "topics": ["0x0000000000000000000000000000000000000000000000000000000012341234"]}], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "filter"
           description: ""
@@ -2962,6 +3404,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -2973,7 +3416,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3001,13 +3444,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_newPendingTransactionFilter\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_newPendingTransactionFilter", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_newPendingTransactionFilter\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_newPendingTransactionFilter", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_newPendingTransactionFilter\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_newPendingTransactionFilter", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_protocolVersion:
     post:
@@ -3041,6 +3499,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -3052,7 +3511,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3080,13 +3539,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_protocolVersion\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_protocolVersion", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_protocolVersion\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_protocolVersion", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_protocolVersion\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_protocolVersion", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_sendRawTransaction:
     post:
@@ -3135,7 +3609,7 @@ paths:
                 - "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3163,13 +3637,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_sendRawTransaction\", \"params\": [\"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_sendRawTransaction", "params": ["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_sendRawTransaction\", \"params\": [\"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_sendRawTransaction", "params": ["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_sendRawTransaction\", \"params\": [\"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_sendRawTransaction", "params": ["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "signedTransactionData"
           description: "The signed transaction data"
@@ -3228,7 +3717,7 @@ paths:
                   data: "0x0000000000000000000000000000000000000000000000000000000000000000"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3256,13 +3745,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_sendTransaction\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_sendTransaction", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_sendTransaction\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_sendTransaction", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_sendTransaction\", \"params\": [{\"from\": \"0xa7d9ddbe1f17865597fbd27ec712455208b6b76d\", \"to\": \"0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb\", \"gas\": \"0xc350\", \"gasPrice\": \"0x4a817c800\", \"value\": \"0xf3dbb76162000\", \"data\": \"0x0000000000000000000000000000000000000000000000000000000000000000\"}], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_sendTransaction", "params": [{"from": "0xa7d9ddbe1f17865597fbd27ec712455208b6b76d", "to": "0xf02c1c8e6114b1dbe8937a39260b5b0a374432bb", "gas": "0xc350", "gasPrice": "0x4a817c800", "value": "0xf3dbb76162000", "data": "0x0000000000000000000000000000000000000000000000000000000000000000"}], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "transactionData"
           description: "The transaction data"
@@ -3318,7 +3822,7 @@ paths:
                 - "0xdeadbeaf"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3347,13 +3851,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_sign\", \"params\": [\"0x9b2055d370f73ec7d8a03e965129118dc8f5bf83\", \"0xdeadbeaf\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_sign", "params": ["0x9b2055d370f73ec7d8a03e965129118dc8f5bf83", "0xdeadbeaf"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_sign\", \"params\": [\"0x9b2055d370f73ec7d8a03e965129118dc8f5bf83\", \"0xdeadbeaf\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_sign", "params": ["0x9b2055d370f73ec7d8a03e965129118dc8f5bf83", "0xdeadbeaf"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_sign\", \"params\": [\"0x9b2055d370f73ec7d8a03e965129118dc8f5bf83\", \"0xdeadbeaf\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_sign", "params": ["0x9b2055d370f73ec7d8a03e965129118dc8f5bf83", "0xdeadbeaf"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "address"
           description: "Unlocked address to sign"
@@ -3397,6 +3916,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -3408,7 +3928,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3466,13 +3986,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_syncing\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_syncing", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_syncing\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_syncing", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_syncing\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_syncing", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /eth_uninstallFilter:
     post:
@@ -3521,7 +4056,7 @@ paths:
                 - "0xb"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3549,13 +4084,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"eth_uninstallFilter\", \"params\": [\"0xb\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "eth_uninstallFilter", "params": ["0xb"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"eth_uninstallFilter\", \"params\": [\"0xb\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "eth_uninstallFilter", "params": ["0xb"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"eth_uninstallFilter\", \"params\": [\"0xb\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "eth_uninstallFilter", "params": ["0xb"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "filterId"
           description: ""
@@ -3594,6 +4144,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -3605,7 +4156,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3641,13 +4192,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"mnr_getWork\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "mnr_getWork", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"mnr_getWork\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "mnr_getWork", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"mnr_getWork\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "mnr_getWork", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /mnr_submitWork:
     post:
@@ -3700,7 +4266,7 @@ paths:
                 - "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3728,13 +4294,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"mnr_submitWork\", \"params\": [\"0x0000000000000001\", \"0x6bf2cAE0dE3ec3ecA5E194a6C6e02cf42aADfe1C2c4Fff12E5D36C3Cf7297F22\", \"0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "mnr_submitWork", "params": ["0x0000000000000001", "0x6bf2cAE0dE3ec3ecA5E194a6C6e02cf42aADfe1C2c4Fff12E5D36C3Cf7297F22", "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"mnr_submitWork\", \"params\": [\"0x0000000000000001\", \"0x6bf2cAE0dE3ec3ecA5E194a6C6e02cf42aADfe1C2c4Fff12E5D36C3Cf7297F22\", \"0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "mnr_submitWork", "params": ["0x0000000000000001", "0x6bf2cAE0dE3ec3ecA5E194a6C6e02cf42aADfe1C2c4Fff12E5D36C3Cf7297F22", "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"mnr_submitWork\", \"params\": [\"0x0000000000000001\", \"0x6bf2cAE0dE3ec3ecA5E194a6C6e02cf42aADfe1C2c4Fff12E5D36C3Cf7297F22\", \"0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "mnr_submitWork", "params": ["0x0000000000000001", "0x6bf2cAE0dE3ec3ecA5E194a6C6e02cf42aADfe1C2c4Fff12E5D36C3Cf7297F22", "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "nonce"
           description: ""
@@ -3783,6 +4364,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -3794,7 +4376,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3823,13 +4405,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"net_listening\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "net_listening", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"net_listening\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "net_listening", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"net_listening\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "net_listening", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /net_peerCount:
     post:
@@ -3863,6 +4460,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -3874,7 +4472,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3904,13 +4502,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"net_peerCount\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "net_peerCount", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"net_peerCount\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "net_peerCount", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"net_peerCount\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "net_peerCount", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /net_peerList:
     post:
@@ -3944,6 +4557,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -3955,7 +4569,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -3988,13 +4602,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"net_peerList\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "net_peerList", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"net_peerList\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "net_peerList", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"net_peerList\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "net_peerList", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /net_version:
     post:
@@ -4028,6 +4657,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -4039,7 +4669,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4069,13 +4699,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"net_version\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "net_version", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"net_version\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "net_version", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"net_version\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "net_version", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /sco_banAddress:
     post:
@@ -4124,7 +4769,7 @@ paths:
                 - "192.168.51.1"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4152,13 +4797,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"sco_banAddress\", \"params\": [\"192.168.51.1\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "sco_banAddress", "params": ["192.168.51.1"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"sco_banAddress\", \"params\": [\"192.168.51.1\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "sco_banAddress", "params": ["192.168.51.1"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"sco_banAddress\", \"params\": [\"192.168.51.1\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "sco_banAddress", "params": ["192.168.51.1"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "Address or block"
           description: ""
@@ -4197,6 +4857,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -4208,7 +4869,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4238,13 +4899,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"sco_bannedAddresses\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "sco_bannedAddresses", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"sco_bannedAddresses\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "sco_bannedAddresses", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"sco_bannedAddresses\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "sco_bannedAddresses", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /sco_clearPeerScoring:
     post:
@@ -4296,7 +4972,7 @@ paths:
                 - "192.168.51.1"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4346,13 +5022,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"sco_clearPeerScoring\", \"params\": [\"192.168.51.1\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "sco_clearPeerScoring", "params": ["192.168.51.1"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"sco_clearPeerScoring\", \"params\": [\"192.168.51.1\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "sco_clearPeerScoring", "params": ["192.168.51.1"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"sco_clearPeerScoring\", \"params\": [\"192.168.51.1\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "sco_clearPeerScoring", "params": ["192.168.51.1"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "peerId"
           description: "First tried as an IPAddress, used as a NodeId otherwise"
@@ -4394,6 +5085,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -4405,7 +5097,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4455,13 +5147,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"sco_peerList\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "sco_peerList", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"sco_peerList\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "sco_peerList", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"sco_peerList\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "sco_peerList", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /sco_reputationSummary:
     post:
@@ -4495,6 +5202,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -4506,7 +5214,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4555,13 +5263,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"sco_reputationSummary\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "sco_reputationSummary", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"sco_reputationSummary\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "sco_reputationSummary", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"sco_reputationSummary\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "sco_reputationSummary", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /sco_unbanAddress:
     post:
@@ -4610,7 +5333,7 @@ paths:
                 - "192.168.51.1"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4638,13 +5361,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"sco_unbanAddress\", \"params\": [\"192.168.51.1\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "sco_unbanAddress", "params": ["192.168.51.1"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"sco_unbanAddress\", \"params\": [\"192.168.51.1\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "sco_unbanAddress", "params": ["192.168.51.1"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"sco_unbanAddress\", \"params\": [\"192.168.51.1\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "sco_unbanAddress", "params": ["192.168.51.1"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "Address or block"
           description: ""
@@ -4683,6 +5421,7 @@ paths:
                   description: "Ordered JSON array of positional parameters for this method."
                   minItems: 0
                   maxItems: 0
+                  items: {}
                 id:
                   oneOf:
                     - type: "integer"
@@ -4694,7 +5433,7 @@ paths:
               params: []
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4723,13 +5462,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"web3_clientVersion\", \"params\": [], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"web3_clientVersion\", \"params\": [], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"web3_clientVersion\", \"params\": [], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params: []
   /web3_sha3:
     post:
@@ -4780,7 +5534,7 @@ paths:
                 - "0x68656c6c6f20776f726c64"
               id: 1
       responses:
-        200:
+        "200":
           description: "Successful JSON-RPC 2.0 response over HTTP. The return value is in `result`. On failure, nodes typically still respond with HTTP 200 and an `error` object instead of `result`."
           content:
             application/json:
@@ -4808,13 +5562,28 @@ paths:
       x-code-samples:
         - lang: "cURL"
           label: "cURL"
-          source: "curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"jsonrpc\": \"2.0\", \"method\": \"web3_sha3\", \"params\": [\"0x68656c6c6f20776f726c64\"], \"id\": 1}'"
+          source: |
+            curl -X POST https://rpc.testnet.rootstock.io/YOUR_API_KEY \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc": "2.0", "method": "web3_sha3", "params": ["0x68656c6c6f20776f726c64"], "id": 1}'
         - lang: "JavaScript"
           label: "JavaScript (fetch)"
-          source: "const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {\\n  method: 'POST',\\n  headers: { 'Content-Type': 'application/json' },\\n  body: JSON.stringify({\"jsonrpc\": \"2.0\", \"method\": \"web3_sha3\", \"params\": [\"0x68656c6c6f20776f726c64\"], \"id\": 1})\\n});\\nconst data = await response.json();\\nconsole.log(data);"
+          source: |
+            const response = await fetch('https://rpc.testnet.rootstock.io/YOUR_API_KEY', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({"jsonrpc": "2.0", "method": "web3_sha3", "params": ["0x68656c6c6f20776f726c64"], "id": 1})
+            });
+            const data = await response.json();
+            console.log(data);
         - lang: "Python"
           label: "Python (requests)"
-          source: "import requests\\n\\npayload = {\"jsonrpc\": \"2.0\", \"method\": \"web3_sha3\", \"params\": [\"0x68656c6c6f20776f726c64\"], \"id\": 1}\\nresponse = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)\\nprint(response.json())"
+          source: |
+            import requests
+            
+            payload = {"jsonrpc": "2.0", "method": "web3_sha3", "params": ["0x68656c6c6f20776f726c64"], "id": 1}
+            response = requests.post('https://rpc.testnet.rootstock.io/YOUR_API_KEY', json=payload, timeout=30)
+            print(response.json())
       x-jsonrpc-params:
         - name: "data"
           description: "Data to hash using the Keccak-256 algorithm"
@@ -5175,7 +5944,7 @@ components:
       oneOf:
         - $ref: "#/components/schemas/Nonce"
         - $ref: "#/components/schemas/Null"
-    Null:
+    "Null":
       title: "null"
       type: "null"
       description: "Null"

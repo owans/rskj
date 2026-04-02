@@ -12,6 +12,9 @@ RskJ is a Java implementation of the Rootstock node. For more information about 
 Information about compiling and running a Rootstock node can be found in the [Rootstock Developers Portal](https://dev.rootstock.io/).
 The stable RskJ versions are published in the [Releases section](https://github.com/rsksmart/rskj/releases).
 
+## Documentation
+- RPC OpenAPI spec generation and maintenance guide: [doc/rpc/README.md](doc/rpc/README.md)
+
 # Report Security Vulnerabilities
 See the [vulnerability reporting guideline](https://github.com/rsksmart/rskj/blob/master/SECURITY.md) for details on how to
 contact us to report a vulnerability.
